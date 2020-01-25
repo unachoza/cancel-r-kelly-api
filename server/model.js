@@ -25,12 +25,15 @@ canceldatabase.addUser = (user) => {
     )
 }
 canceldatabase.countUniqueUsers = async () => {
-    const uniqueUsers = await db.query(`
+    try {const uniqueUsers = await db.query(`
     SELECT COUNT (DISTINCT display_name)
     FROM users
     `)
     console.log(uniqueUsers)
-    return uniqueUsers
+        return uniqueUsers
+    } catch (error){
+        res.send(error)
+    }
 }
 
 canceldatabase.addSong = (song) => {
