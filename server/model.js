@@ -27,7 +27,7 @@ canceldatabase.addUser = user => {
   );
 };
 
-canceldatabase.countUniqueUsers = async () => {
+canceldatabase.countUniqueUsers = async (req, res, db) => {
   try {
     const uniqueUsers = await db.one(`
     SELECT COUNT (DISTINCT display_name)
