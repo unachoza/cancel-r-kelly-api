@@ -1,6 +1,7 @@
 const canceldatabase = require('./model')
 const cancelController = {}
 console.log("this is the cancel", canceldatabase)
+console.log('this is controller unique user', cancelController.countUniqueUsers)
 
 
 //Get All Users
@@ -84,8 +85,8 @@ cancelController.countUniqueUsers = (req,res) => {
             data: data
         })
     })
-    .catch(err => {
-        res.status(500).json({err})
+        .catch(err => {
+        res.status(500).res.send({err},"controller situation , unique users" )
     })
 }
 

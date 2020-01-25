@@ -6,6 +6,7 @@
 
 const db = require('../db/config');
 const canceldatabase = {};
+console.log('this is route unique user', canceldatabase.countUniqueUsers)
 
 canceldatabase.allUsers = () => {
   return db.query(`
@@ -60,8 +61,8 @@ canceldatabase.countDeletedSongs = async () => {
     console.log(deletedSongs);
     return deletedSongs;
   } catch (error) {
-    console.log(error);
-    res.send(error);
+    console.log({error});
+    res.send({error}, "it's not you, it's me ");
   }
 };
 
