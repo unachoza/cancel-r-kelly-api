@@ -2,10 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const cancelController = require('./controller.js')
-console.log("this is cancelController", cancelController)
 
 router.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://spot-server.herokuapp.com/"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "https://spotify-cancel.herokuapp.com/"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
     

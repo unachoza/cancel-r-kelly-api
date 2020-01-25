@@ -6,7 +6,7 @@
 
 const db = require('../db/config');
 const canceldatabase = {};
-console.log('this is route unique user', canceldatabase.countUniqueUsers)
+
 
 canceldatabase.allUsers = () => {
   return db.query(`

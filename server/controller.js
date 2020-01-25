@@ -1,7 +1,6 @@
 const canceldatabase = require('./model')
 const cancelController = {}
 console.log("this is the cancel", canceldatabase)
-console.log('this is controller unique user', cancelController.countUniqueUsers)
 
 
 //Get All Users
