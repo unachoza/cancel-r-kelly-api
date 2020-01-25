@@ -24,11 +24,13 @@ canceldatabase.addUser = (user) => {
     [user.display_name, user.email, user.country, user.time, user.songs]
     )
 }
-canceldatabase.countUniqueUsers = () => {
-    return db.query(`
+canceldatabase.countUniqueUsers = async () => {
+    const uniqueUsers = await db.query(`
     SELECT COUNT (DISTINCT display_name)
     FROM users
     `)
+    console.log(uniqueUsers)
+    return uniqueUsers
 }
 
 canceldatabase.addSong = (song) => {
