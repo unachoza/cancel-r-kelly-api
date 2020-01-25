@@ -80,7 +80,7 @@ cancelController.countUniqueUsers = async (req, res) => {
     try {
         let users = await canceldatabase.countUniqueUsers()
         users = await users.json()
-        res.send('all users here')
+        users.send('all users here')
         return users
     } catch (error) {
         res.status(500).res.send("controller situation , unique users" )
