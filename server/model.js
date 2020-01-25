@@ -26,7 +26,7 @@ canceldatabase.addUser = user => {
 };
 canceldatabase.countUniqueUsers = async () => {
   try {
-    const uniqueUsers = await db.query(`
+    const uniqueUsers = await db.one(`
     SELECT COUNT (DISTINCT display_name)
     FROM users
     `);
@@ -53,7 +53,7 @@ canceldatabase.addSong = song => {
 
 canceldatabase.countDeletedSongs = async () => {
   try {
-    const deletedSongs = await db.query(`
+    const deletedSongs = await db.one(`
     SELECT COUNT(1) FROM songs
     WHERE deleted = true
     `);
