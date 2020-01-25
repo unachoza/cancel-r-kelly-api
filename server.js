@@ -1,6 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
-const path = require('path');
+// const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./db/config')
 
@@ -11,10 +11,7 @@ server.use(express.static('public'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+
 
 server.get('/', (req, res) => {
   res.send('hello world; you have connected');
@@ -27,6 +24,10 @@ server.use('*', (req, res) => {
   res.status(400).json({
     message: 'Endpoint not found. But you can definitely find it; Keep trying!',
   });
+});
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
 
 // app.use(cors({ origin: 'http://localhost3001/db:3030', credentials: true }))

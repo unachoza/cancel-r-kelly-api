@@ -10,8 +10,9 @@ const db = () => {
     if(process.env.NODE_ENV === 'developement' || !process.env.NODE_ENV){
         return pgp({
             database: 'cancel',
-            port: 5432, 
-            host: 'localhost'
+            host: process.env.DATABASE_URL,
+            ssl: true
+        
         })
     } else return pgp(process.env.DATABASE_URL)
 }
