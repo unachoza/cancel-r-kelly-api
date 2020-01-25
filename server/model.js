@@ -6,6 +6,7 @@
 
 const db = require('../db/config');
 const canceldatabase = {};
+console.log(db)
 
 
 canceldatabase.allUsers = () => {
@@ -25,6 +26,7 @@ canceldatabase.addUser = user => {
     [user.display_name, user.email, user.country, user.time, user.songs]
   );
 };
+
 canceldatabase.countUniqueUsers = async () => {
   try {
     const uniqueUsers = await db.one(`

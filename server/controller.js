@@ -9,7 +9,7 @@ cancelController.allUsers = (req, res) => {
     .then(data => {
         res.json({
             message: 'all users here',
-            data: data
+             data
         })
     })
     .catch(err => {
@@ -23,7 +23,7 @@ cancelController.addUser = (req, res) => {
     .then(data => {
         res.json({
             message: "added user",
-            data: data
+             data
         })
     }) 
     .catch(err => {
@@ -68,7 +68,7 @@ cancelController.updateSong = (req, res) => {
     .then(data => {
         res.json({
             message: " song was changed to deleted ",
-            data: data
+             data
         })
     })
     .catch(err => {
@@ -76,17 +76,15 @@ cancelController.updateSong = (req, res) => {
     })
 }
 
-cancelController.countUniqueUsers = (req,res) => {
-    canceldatabase.countUniqueUsers()
-    .then(data => {
-        res.json({
-            message: 'all users here',
-            data: data
-        })
-    })
-        .catch(err => {
-        res.status(500).res.send({err},"controller situation , unique users" )
-    })
+cancelController.countUniqueUsers = async (req, res) => {
+    try {
+        let users = await canceldatabase.countUniqueUsers()
+        users = await users.json()
+        res.send('all users here')
+        return users
+    } catch (error) {
+        res.status(500).res.send("controller situation , unique users" )
+    }
 }
 
 module.exports = cancelController 
