@@ -4,66 +4,77 @@
     count found songs
 */
 
-const db = require('../db/config')
-const canceldatabase = {}
-
+const db = require('../db/config');
+const canceldatabase = {};
 
 canceldatabase.allUsers = () => {
-    return db.query(`
+  return db.query(`
     SELECT * FROM users
-    `)
-}
+    `);
+};
 
-canceldatabase.addUser = (user) => {
-    return db.one(`
+canceldatabase.addUser = user => {
+  return db.one(
+    `
     INSERT INTO users
     (display_name, email, country, time, songs)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *
     `,
     [user.display_name, user.email, user.country, user.time, user.songs]
-    )
-}
+  );
+};
 canceldatabase.countUniqueUsers = async () => {
-    try {const uniqueUsers = await db.query(`
+  try {
+    const uniqueUsers = await db.query(`
     SELECT COUNT (DISTINCT display_name)
     FROM users
-    `)
-    console.log(uniqueUsers)
-        return uniqueUsers
-    } catch (error){
-        res.send(error)
-    }
-}
+    `);
+    console.log(uniqueUsers);
+    return uniqueUsers;
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
 
-canceldatabase.addSong = (song) => {
-    console.log('this is song', song)
-    return db.one(`
+canceldatabase.addSong = song => {
+  console.log('this is song', song);
+  return db.one(
+    `
     INSERT INTO songs
     (name, artist, deleted)
     VALUES ($1, $2, $3)
     RETURNING *
     `,
     [song.name, song.artist, song.deleted]
-    )
-}
+  );
+};
 
-canceldatabase.countDeletedSongs = () => {
-    return db.query(`
+canceldatabase.countDeletedSongs = async () => {
+  try {
+    const deletedSongs = await db.query(`
     SELECT COUNT(1) FROM songs
     WHERE deleted = true
-    `)
-}
+    `);
+    console.log(deletedSongs);
+    return deletedSongs;
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
 
-canceldatabase.updateSong = (id) => {
-    console.log(id)
-    return db.one(`
+canceldatabase.updateSong = id => {
+  console.log(id);
+  return db.one(
+    `
     UPDATE songs 
     SET deleted = TRUE
     WHERE id = $1
     `,
     [id]
-    )
-}
+  );
+};
 
-module.exports = canceldatabase
+module.exports = canceldatabase;
