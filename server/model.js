@@ -4,7 +4,8 @@
     count found songs
 */
 
-const db = require('../db/config');
+const getDb = require('../db/config');
+const db = getDb()
 const canceldatabase = {};
 console.log(db)
 
