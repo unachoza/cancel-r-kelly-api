@@ -56,7 +56,7 @@ cancelController.countDeletedSongs = (req, res) => {
         })
     })
     .catch(err => {
-        res.status(500).json(err)
+        res.status(500).send(err)
     })
     
     
@@ -83,7 +83,7 @@ cancelController.countUniqueUsers = async (req, res) => {
         users.send('all users here')
         return users
     } catch (error) {
-        res.status(500).res.send("controller situation , unique users" )
+        users.status(500).users.send("controller situation , unique users" )
     }
 }
 
