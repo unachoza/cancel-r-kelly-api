@@ -1,10 +1,12 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const db = require('./db/config')
 
 const server = express();
 
+server.use(cors)
 server.use(logger('dev'));
 server.use(express.static('public'));
 server.use(bodyParser.json());
