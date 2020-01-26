@@ -40,6 +40,19 @@ canceldatabase.countUniqueUsers = async (req, res) => {
     res.send(error);
   }
 };
+canceldatabase.countDeletedSongs = async () => {
+  try {
+    const deletedSongs = await db.one(`
+    SELECT COUNT(1) FROM songs
+    WHERE deleted = true
+    `);
+    console.log(deletedSongs);
+    return deletedSongs;
+  } catch (error) {
+    console.log({error});
+    res.send({error}, "it's not you, it's me ");
+  }
+};
 
 canceldatabase.addSong = song => {
   console.log('this is song', song);
@@ -54,19 +67,7 @@ canceldatabase.addSong = song => {
   );
 };
 
-canceldatabase.countDeletedSongs = async () => {
-  try {
-    const deletedSongs = await db.one(`
-    SELECT COUNT(1) FROM songs
-    WHERE deleted = true
-    `);
-    console.log(deletedSongs);
-    return deletedSongs;
-  } catch (error) {
-    console.log({error});
-    res.send({error}, "it's not you, it's me ");
-  }
-};
+
 
 canceldatabase.updateSong = id => {
   console.log(id);
