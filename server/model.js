@@ -7,7 +7,7 @@
 const getDb = require('../db/config');
 const db = getDb()
 const canceldatabase = {};
-console.log(db)
+console.log("this is the db",db)
 
 
 canceldatabase.allUsers = () => {
