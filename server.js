@@ -16,8 +16,6 @@ server.get('/', (req, res) => {
   res.send('hello world; you have connected');
 });
 
-const cancelRoutes = require('./server/routes');
-server.use('/db', cancelRoutes);
 
 
 server.use(cors({ origin: 'http://spotify-cancel.herokuapp.com/', credentials: true }))
@@ -39,7 +37,11 @@ server.use( (req, res, next)=> {
 
     // Pass to next layer of middleware
     next();
-  });
+});
+  
+const cancelRoutes = require('./server/routes');
+server.use('/db', cancelRoutes);
+
 server.use('*', (req, res) => {
   res.status(400).json({
     message: 'Endpoint not found. But you can definitely find it; Keep trying!',
