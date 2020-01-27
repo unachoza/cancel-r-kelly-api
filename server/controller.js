@@ -82,7 +82,7 @@ cancelController.countUniqueUsers = (req, res) => {
   canceldatabase
     .countUniqueUsers()
     .then(data => {
-      data.json({
+      res.json({
         message: 'all users here are unique',
         data,
       });
