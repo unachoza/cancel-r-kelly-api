@@ -26,10 +26,10 @@ server.get('/users/unique', cors(corsOptions), function (req, res, next) {
  
 
 
-server.use(cors({ origin: 'http://spot-server.herokuapp.com/db', credentials: true }))
+server.use(cors({ origin: 'http://spotify-cancel.herokuapp.com/', credentials: true }))
 server.use( (req, res, next)=> {
    
-    res.setHeader('Access-Control-Allow-Origin', 'https://spot-server.herokuapp.com/');
+    res.setHeader('Access-Control-Allow-Origin', 'http://spotify-cancel.herokuapp.com/');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
