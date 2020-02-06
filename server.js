@@ -18,11 +18,11 @@ server.get('/', (req, res) => {
 });
 
 
-server.use(
-  '/users/unique',
-  proxy({ target: 'https://spot-server.herokuapp.com/db', changeOrigin: true })
-);
-// server.use(cors({ origin: 'http://spot-server.herokuapp.com/', credentials: true }))
+// server.use(
+//   '/users/unique',
+//   proxy({ target: 'https://spot-server.herokuapp.com/db', changeOrigin: true })
+// );
+server.use(cors({ origin: 'http://spot-server.herokuapp.com/db', credentials: true }))
 server.use( (req, res, next)=> {
     /*var err = new Error('Not Found');
      err.status = 404;
