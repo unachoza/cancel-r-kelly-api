@@ -18,7 +18,7 @@ server.get('/', (req, res) => {
 
 
 
-server.use(cors({ origin: 'http://spotify-cancel.herokuapp.com/', credentials: true }))
+server.use(cors({ origin: 'http://spot-server.herokuapp.com/', credentials: true }))
 server.use( (req, res, next)=> {
     /*var err = new Error('Not Found');
      err.status = 404;
