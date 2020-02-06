@@ -11,24 +11,24 @@ server.use(express.static('public'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-
+var corsOptions = {
+  origin: 'http://example.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 server.get('/', (req, res) => {
   res.send('hello world; you have connected');
 });
 
+app.get('/users/unique', cors(corsOptions), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for only example.com.'})
+})
+ 
 
-// server.use(
-//   '/users/unique',
-//   proxy({ target: 'https://spot-server.herokuapp.com/db', changeOrigin: true })
-// );
+
 server.use(cors({ origin: 'http://spot-server.herokuapp.com/db', credentials: true }))
 server.use( (req, res, next)=> {
-    /*var err = new Error('Not Found');
-     err.status = 404;
-     next(err);*/
-
-    // Website you wish to allow to connect
+   
     res.setHeader('Access-Control-Allow-Origin', 'https://spot-server.herokuapp.com/');
 
     // Request methods you wish to allow
@@ -55,3 +55,7 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
+app.li
+sten(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
