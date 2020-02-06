@@ -20,7 +20,7 @@ server.get('/', (req, res) => {
   res.send('hello world; you have connected');
 });
 
-app.get('/users/unique', cors(corsOptions), function (req, res, next) {
+server.get('/users/unique', cors(corsOptions), function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for only example.com.'})
 })
  
