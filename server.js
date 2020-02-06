@@ -3,6 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const cors = require('cors')
+const proxy = require('http-proxy-middleware'); 
 const server = express();
 
 server.use(logger('dev'));
@@ -17,8 +18,11 @@ server.get('/', (req, res) => {
 });
 
 
-
-server.use(cors({ origin: 'http://spot-server.herokuapp.com/', credentials: true }))
+server.use(
+  '/users/unique',
+  proxy({ target: 'https://spot-server.herokuapp.com/db', changeOrigin: true })
+);
+// server.use(cors({ origin: 'http://spot-server.herokuapp.com/', credentials: true }))
 server.use( (req, res, next)=> {
     /*var err = new Error('Not Found');
      err.status = 404;
