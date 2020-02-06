@@ -3,7 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const cors = require('cors')
-const proxy = require('http-proxy-middleware'); 
+// const proxy = require('http-proxy-middleware'); 
 const server = express();
 
 server.use(logger('dev'));
