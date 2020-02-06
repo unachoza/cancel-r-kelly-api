@@ -55,7 +55,6 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
-app.li
-sten(80, function () {
+app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
