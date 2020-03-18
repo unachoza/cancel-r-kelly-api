@@ -2,19 +2,19 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-const cors = require('cors')
-// const proxy = require('http-proxy-middleware'); 
+const cors = require('cors');
+// const proxy = require('http-proxy-middleware');
 const server = express();
-server.use(cors())
+server.use(cors(corsOptions));
 server.use(logger('dev'));
 server.use(express.static('public'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-// var corsOptions = {
-//   origin: 'http://spotify-cancel.herokuapp.com/',
-//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
+var corsOptions = {
+  origin: 'http://spotify-cancel.herokuapp.com/',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 server.get('/', (req, res) => {
   res.send('hello world; you have connected');
@@ -23,12 +23,10 @@ server.get('/', (req, res) => {
 // server.get('/users/unique', cors(corsOptions), function (req, res, next) {
 //   res.json({msg: 'This is CORS-enabled for only example.com.'})
 // })
- 
-
 
 // server.use(cors({ origin: 'http://spotify-cancel.herokuapp.com/', credentials: true }))
 // server.use( (req, res, next)=> {
-   
+
 //     res.setHeader('Access-Control-Allow-Origin', 'https://spot-server.herokuapp.com/');
 
 //     // Request methods you wish to allow
@@ -42,7 +40,7 @@ server.get('/', (req, res) => {
 //     // Pass to next layer of middleware
 //     next();
 // });
-  
+
 const cancelRoutes = require('./server/routes');
 server.use('/db', cancelRoutes);
 
